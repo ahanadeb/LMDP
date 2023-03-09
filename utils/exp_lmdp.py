@@ -32,3 +32,4 @@ def exp_lmdp():
     plt.savefig('figure.png')
     plt.show()
     #print("check")
+    print("hey")
