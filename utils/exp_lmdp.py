@@ -31,5 +31,4 @@ def exp_lmdp():
     plt.ylabel('EVD for the new trajectory')
     plt.savefig('figure.png')
     plt.show()
-    #print("check")
-    print("hey")
+
