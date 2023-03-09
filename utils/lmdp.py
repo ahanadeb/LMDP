@@ -41,7 +41,7 @@ def lmdp_gen_traj(X, P, tl):
         traj[i, 0] = s0
         #next_s = random.choices(states, weights=P[s0, :].reshape((X,)), k=1)
         next_s = [np.argmax(P[s0, :])]
-        print(next_s)
+        #print(next_s)
         traj[i, 1] = next_s[0]
         s0=next_s[0]
     #print("traj", traj)
