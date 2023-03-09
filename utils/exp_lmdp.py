@@ -30,5 +30,5 @@ def exp_lmdp():
     plt.xlabel('no. of trajectories per agent')
     plt.ylabel('EVD for the new trajectory')
     plt.savefig('figure.png')
-    #plt.show()
-    print("check")
+    plt.show()
+    #print("check")
