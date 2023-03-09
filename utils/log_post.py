@@ -18,7 +18,7 @@ def calLogLLH(r, traj, p1, P_un):
     r = reward_feature(M, N, r).reshape(X, 1)
     z, r2 = get_z(r, P_un)
     P = optimal_policy(P_un, z)
-
+    print('llh')
     llh = 0
 
     for i in range(0, len(traj)):
