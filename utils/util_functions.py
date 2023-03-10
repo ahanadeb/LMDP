@@ -2,6 +2,7 @@ import numpy as np
 from tqdm import tqdm
 import time
 from utils.policies import *
+from utils.params import *
 
 
 def trans(P, pi):  # constructs X by X transition matrix for policy pi
@@ -79,4 +80,21 @@ def conv_policy(policy):
     return p
 
 
+def get_neighbours(x):
+    l=[]
+    #grid = np.arange(X).reshape((M,N))
+    #up
+    if x - N >=0 :
+        l.append(x-8)
+    #down
+    if x +N <=X-1:
+        l.append(x+8)
+    #left
+    if x-1>=0:
+        l.append(x-1)
+    #right
+    if x+1<=X-1:
+        l.append(x+1)
+    l.append(x)
 
+    return l

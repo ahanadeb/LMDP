@@ -35,7 +35,7 @@ def evd(hist, reward_gt, maxiter, tn, P_un,y):
         opt_policy = optimal_policy(P_un, z_true)
         V_true = evaluate_analytical(opt_policy, r1, gamma)
 
-        e = e + (V_true - V_eval)
+        e = e + np.abs(np.log(z_true) - np.log(z_eval))
     e = e / tn
     #print("v_true", V_true)
     #print("v_eval", V_eval)

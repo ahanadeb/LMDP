@@ -102,6 +102,7 @@ def newZ(P_un):
 
 
 def update_cluster(C, m, traj_set, P_un, iter=2):
+
     for it in range(0,iter):
         c = int(C.assignment[m])
         r1 = C.reward[:, c]
@@ -137,6 +138,7 @@ def update_cluster(C, m, traj_set, P_un, iter=2):
                 C.policy[:, :, c2] = p2
                 C.value[:, c2] = v2
         C.policy_empty = False
+
     return C
 
 
@@ -187,6 +189,5 @@ def relabel_cluster(C,tn):
         C.reward = np.transpose(R)
         C.value = V
         C.policy = P
-
 
     return C

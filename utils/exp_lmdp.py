@@ -16,7 +16,7 @@ def exp_lmdp():
     y = []
     i = 2
     while i < 7:
-        maxiter = 30
+        maxiter = 50
         tn = RF * i
         y.append(int(i))
         traj_set, rewards_gt, y2 = lmdp_trajectories(F, P_un, RF, tn, tl)

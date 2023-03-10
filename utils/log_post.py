@@ -17,16 +17,18 @@ np.set_printoptions(threshold=np.inf)
 def calLogLLH(r, traj, p1, P_un):
     r = reward_feature(M, N, r).reshape(X, 1)
     z, r2 = get_z(r, P_un)
+    #print("here",(z < 0))
     P = optimal_policy(P_un, z)
-    print('llh')
+    #print((P >= 0) & (P <= 1))
     llh = 0
-
+    v = np.log(z)
     for i in range(0, len(traj)):
         tr = traj[i]
         states = tr[:, 0]
         next_s = tr[:, 1]
         for j in range(0, tr.shape[0]):
             llh = llh + np.log(P[int(states[j]), int(next_s[j])])
+
 
     return llh
 

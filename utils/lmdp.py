@@ -4,6 +4,7 @@ from utils.params import *
 import scipy as sp
 import scipy.sparse
 from utils.transition import *
+from numpy import linalg as LA
 
 #P_un = uncontrolled transition dynamics
 def get_z(r, P_un):
@@ -17,18 +18,29 @@ def get_z(r, P_un):
     for i in range(X):
         G[i, i] = np.exp(r[i])
     # G = sp.sparse.spdiags(r, 0, r.size, r.size)
-    for i in range(0, 30):
-        z = np.matmul(G, np.matmul(P_un, z))
+    for i in range(0,100):
+        z = np.matmul(G, np.matmul(P_un, np.power(z,gamma)))
         #print("z",z)
+    w, v = LA.eigh(np.matmul(G,P_un))
+    w1=np.argmax(w)
+    v = v[w1,:]
+    v=v.reshape((X,1))
+    if z.any() <0:
+        print("problem z")
     return z, r
 
 
 def optimal_policy(P_un, z):
     a = np.zeros((X, X))
     for i in range(0, X):
+        s=0
         for j in range(0, X):
             a[i, j] = P_un[i, j] * z[j]
-        a[i, :] = a[i, :] / np.sum(a[i, :])
+            s= s+a[i, j]
+        #print(np.sum(a[i, :].reshape((1,X)), axis=1))
+        a[i, :] = a[i, :] / s
+    if a.any() < 0 or a.any() >1:
+        print("problem policy")
     return a
 
 
